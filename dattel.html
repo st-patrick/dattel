@@ -1,0 +1,149 @@
+<html>
+
+
+<head>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<style>
+table, td {
+  border: 1px solid black;
+}
+
+td {
+	padding: 10px;
+}
+</style>
+
+</head>
+
+
+<body style="padding: 50px;">
+
+	<h1>Dattel</h1>
+	
+	<h2>Communities</h2>
+
+	<table width="100%">
+		<tr><td><a href="#">Star Wars Fans</a></td></tr>
+		<tr><td><a href="#">Fashionistas</a></td></tr>
+		<tr><td><a href="#">Curb Your Enthusiasm Fans</a></td></tr>
+		<tr><td><a href="#">Gym</a></td></tr>
+		<tr><td><a href="#">Pick Up Artists</a></td></tr>
+	</table>
+	
+	<br>
+	<button>Start New Community</button>
+	
+	<br>
+	<br>
+	<h3>Hot Tips</h3>
+	<ul>
+		<li>Keep your camera off when no one is in your room. Talk for 1 or 2 minutes first, then turn on the camera after.</li>
+		<li>If you use any video meeting service, check what name appears for you. You might not want to let everyone know your full name.</li>
+		<li>Under location, list the nearest larger cities you would be ok meeting in, e.g. "Los Angeles, San Diego". If they are small, don't worry about it, so long as it represents your preferences.</li>
+		<li>With the whole video thing, we can make sure you are talking to real people. Now those people might still be lying but hey, at least they have a beating heart.</li>
+	</ul>
+	
+	
+	<div style="position: absolute; bottom: 20px ; text-align: center; width: 95%;">
+		Made with &heartsuit; in LA
+	</div>
+	
+	
+
+</body>
+
+
+<script>
+
+// Create a single supabase client for interacting with your database
+const _supabase = supabase.createClient('https://zskcnxrtvvrxfvlgbzof.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpza2NueHJ0dnZyeGZ2bGdiem9mIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODAxMjAwMjUsImV4cCI6MTk5NTY5NjAyNX0.6Z6zXp9f2CZIuCeONiCHpDwWP2LkHLJYk45wZKKd7zQ');
+
+async function loadData() {
+	let { data: communities, error } = await _supabase
+	  .from('communities')
+	  .select('*')
+
+	console.log(communities);
+}
+loadData()
+
+</script>
+
+
+</html>
+
+
+
+<!--
+
+app.initialize();
+
+candidates.show();
+
+Button.register.makeNewCommunity();
+
+Button.register.saveCommunity();
+
+User.login();
+
+User.loginWithGoogle();
+
+postAd(Username u, MeetingRoom m, Photo = None);
+
+MeetingRoom {
+	String URL;
+}
+
+
+/////// shitty ass chatGPT version //////////
+
+class Profile {
+    constructor(username, MeetingRoom m, intro, photoUrl = null) {
+        this.username = username;
+        this.meetingRoomUrl = meetingRoomUrl;
+        this.intro = intro;
+        this.photoUrl = photoUrl;
+    }
+}
+
+function postAd(username, MeetingRoom m, intro, photoUrl = null) {
+    const profile = new Profile(username, meetingRoom, intro, photoUrl);
+    // Save the profile to the backend
+}
+
+
+/////////// API design /////////////
+
+dattel.com 
+	/ads
+		/post
+		/get
+			/{ID}
+	/communities
+		/post
+		/getAll
+		/{ID}
+			/getAds
+			
+			
+			
+and then, of course if the communities are just tags, then any post with any tag creates new communities
+But lets just start with like... 50 basic communities and let people pick between 1 and 10 they want to belong to
+
+And also, posts should auto-delete after... like idk. 30 mins or so.
+
+for now, text intros.
+later on, have people hold the peace gesture into the camera so as to obscur facial recognition and have that be profile pic
+
+have a "police" section, where people can captcha-like help detect fake accounts or mostly anonymous accounts that are not backed by any real intent to talk
+			
+the beauty of this is you can either be "passive" and wait for people to join your room OR browse around people's rooms.
+
+... obviously rather quickly we will need things like "gender" and "location"
+
+put it behind cloudflare to prevent yadda... VPN, bots etc...
+			
+-->
